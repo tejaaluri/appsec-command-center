@@ -1,0 +1,157 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppSec Command Center</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+    <div class="app-container">
+
+        <aside class="sidebar">
+            <div class="brand">
+                <span class="brand-icon">A</span>
+                <span>AppSec Center</span>
+            </div>
+
+            <div class="nav-section">
+                <p class="nav-heading">WORKSPACE</p>
+                <a href="#" class="nav-link active">Dashboard</a>
+                <a href="#" class="nav-link">Vulnerabilities</a>
+                <a href="#" class="nav-link">Applications</a>
+                <a href="#" class="nav-link">Security Assessments</a>
+                <a href="#" class="nav-link">API Security</a>
+            </div>
+
+            <div class="nav-section">
+                <p class="nav-heading">MANAGEMENT</p>
+                <a href="#" class="nav-link">Remediation</a>
+                <a href="#" class="nav-link">Reports</a>
+                <a href="#" class="nav-link">Settings</a>
+            </div>
+
+            <div class="sidebar-footer">
+                <span>Application Security</span>
+                <small>Vulnerability Management</small>
+            </div>
+        </aside>
+
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <h1>Security Dashboard</h1>
+                    <p>Overview of application security findings</p>
+                </div>
+
+                <div class="user-profile">
+                    <span class="status-indicator"></span>
+                    <span>Security Team</span>
+                </div>
+            </header>
+
+            <section class="dashboard-content">
+
+                <div class="page-heading">
+                    <div>
+                        <h2>Security Overview</h2>
+                        <p>Review vulnerabilities and remediation progress.</p>
+                    </div>
+                    <button class="primary-btn" id="reportBtn">
+                        Export Report
+                    </button>
+                </div>
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <p>Total Findings</p>
+                        <h2 id="totalFindings">0</h2>
+                        <span>Across all applications</span>
+                    </div>
+
+                    <div class="stat-card critical">
+                        <p>Critical</p>
+                        <h2 id="criticalCount">0</h2>
+                        <span>Immediate attention required</span>
+                    </div>
+
+                    <div class="stat-card high">
+                        <p>High</p>
+                        <h2 id="highCount">0</h2>
+                        <span>Priority remediation</span>
+                    </div>
+
+                    <div class="stat-card resolved">
+                        <p>Resolved</p>
+                        <h2 id="resolvedCount">0</h2>
+                        <span>Fixed findings</span>
+                    </div>
+
+                </div>
+
+                <section class="panel">
+                    <div class="panel-header">
+                        <div>
+                            <h3>Recent Vulnerability Findings</h3>
+                            <p>Latest security assessment results</p>
+                        </div>
+
+                        <input
+                            type="search"
+                            id="searchInput"
+                            placeholder="Search findings..."
+                        >
+                    </div>
+
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Finding ID</th>
+                                    <th>Vulnerability</th>
+                                    <th>Application</th>
+                                    <th>Severity</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+
+                            <tbody id="findingsTable">
+                                <tr>
+                                    <td colspan="5">Loading findings...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+
+                <section class="bottom-grid">
+
+                    <div class="panel">
+                        <h3>Severity Distribution</h3>
+                        <div id="severitySummary">
+                            Loading security data...
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <h3>Remediation Status</h3>
+                        <div id="remediationSummary">
+                            Loading security data...
+                        </div>
+                    </div>
+
+                </section>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>
