@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remediation Management | AppSec Center</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">A</span>
+            <span>AppSec Center</span>
+        </div>
+
+        <div class="nav-section">
+            <p class="nav-heading">WORKSPACE</p>
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="vulnerabilities.html" class="nav-link">Vulnerabilities</a>
+            <a href="#" class="nav-link">Applications</a>
+            <a href="#" class="nav-link">Security Assessments</a>
+            <a href="#" class="nav-link">API Security</a>
+        </div>
+
+        <div class="nav-section">
+            <p class="nav-heading">MANAGEMENT</p>
+            <a href="remediation.html" class="nav-link active">Remediation</a>
+            <a href="#" class="nav-link">Reports</a>
+            <a href="#" class="nav-link">Settings</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <span>Application Security</span>
+            <small>Vulnerability Management</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Remediation Management</h1>
+                <p>Track vulnerability fixes and remediation progress</p>
+            </div>
+
+            <div class="user-profile">
+                <span class="status-indicator"></span>
+                <span>Security Team</span>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Remediation Overview</h2>
+                    <p>Monitor assigned findings, target dates and remediation status.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Total Assigned</p>
+                    <h2 id="totalAssigned">8</h2>
+                    <span>Findings under tracking</span>
+                </div>
+
+                <div class="stat-card critical">
+                    <p>Open</p>
+                    <h2 id="openCount">3</h2>
+                    <span>Awaiting remediation</span>
+                </div>
+
+                <div class="stat-card high">
+                    <p>In Progress</p>
+                    <h2 id="progressCount">2</h2>
+                    <span>Fixes being worked on</span>
+                </div>
+
+                <div class="stat-card resolved">
+                    <p>Completed</p>
+                    <h2 id="completedCount">3</h2>
+                    <span>Remediation completed</span>
+                </div>
+
+            </div>
+
+            <section class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Remediation Tracker</h3>
+                        <p>Assigned owners, priorities and target completion dates</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Finding ID</th>
+                                <th>Vulnerability</th>
+                                <th>Application</th>
+                                <th>Owner</th>
+                                <th>Priority</th>
+                                <th>Status</th>
+                                <th>Target Date</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="remediationTable">
+                            <tr>
+                                <td colspan="7">Loading remediation records...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/remediation.js"></script>
+
+</body>
+</html>
