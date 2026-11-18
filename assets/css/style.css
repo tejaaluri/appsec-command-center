@@ -513,3 +513,18 @@ tbody tr:hover {
         max-height: 90vh;
     }
 }
+
+/* Remediation edit button */
+.edit-button {
+    padding: 7px 16px;
+    border: none;
+    border-radius: 6px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 13px;
+    cursor: pointer;
+}
+
+.edit-button:hover {
+    background: #1d4ed8;
+}
