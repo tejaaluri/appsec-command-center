@@ -342,3 +342,102 @@ tbody tr:hover {
         align-items: flex-start;
     }
 }
+
+/* Vulnerability labels */
+
+.severity,
+.status {
+    display: inline-block;
+    padding: 5px 9px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.severity.critical {
+    color: #c03939;
+    background: #fdeaea;
+}
+
+.severity.high {
+    color: #b76a16;
+    background: #fff1dc;
+}
+
+.severity.medium {
+    color: #947016;
+    background: #fff8d9;
+}
+
+.severity.low {
+    color: #287b62;
+    background: #e4f5ee;
+}
+
+.status.open {
+    color: #c03939;
+    background: #fdeaea;
+}
+
+.status.in-progress {
+    color: #996719;
+    background: #fff4dc;
+}
+
+.status.fixed {
+    color: #287b62;
+    background: #e4f5ee;
+}
+
+/* Summary sections */
+
+.summary-item {
+    margin-top: 20px;
+}
+
+.summary-label {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: 12px;
+}
+
+.progress-track {
+    height: 8px;
+    background: #edf0f4;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    border-radius: 10px;
+}
+
+.progress-fill.critical {
+    background: #d84d4d;
+}
+
+.progress-fill.high {
+    background: #e99535;
+}
+
+.progress-fill.medium {
+    background: #d5ad42;
+}
+
+.progress-fill.low {
+    background: #269d73;
+}
+
+.remediation-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px 0;
+    border-bottom: 1px solid #edf0f4;
+    font-size: 13px;
+}
+
+.remediation-item:last-child {
+    border-bottom: none;
+}
