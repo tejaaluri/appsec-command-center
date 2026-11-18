@@ -74,14 +74,27 @@ const vulnerabilityFindings = [
     }
 ];
 
-function loadVulnerabilityTable() {
+// Display vulnerability findings
+function loadVulnerabilityTable(findings = vulnerabilityFindings) {
     const table = document.getElementById("vulnerabilityTable");
 
     if (!table) return;
 
     table.innerHTML = "";
 
-    vulnerabilityFindings.forEach(finding => {
+    if (findings.length === 0) {
+        const row = document.createElement("tr");
+        const cell = document.createElement("td");
+
+        cell.colSpan = 7;
+        cell.textContent = "No matching vulnerabilities found.";
+
+        row.appendChild(cell);
+        table.appendChild(row);
+        return;
+    }
+
+    findings.forEach(finding => {
         const row = document.createElement("tr");
 
         const values = [
@@ -96,22 +109,19 @@ function loadVulnerabilityTable() {
 
         values.forEach((value, index) => {
             const cell = document.createElement("td");
-            cell.textContent = value;
 
             if (index === 5) {
                 const badge = document.createElement("span");
                 badge.className = `severity ${finding.severity.toLowerCase()}`;
                 badge.textContent = value;
-                cell.textContent = "";
                 cell.appendChild(badge);
-            }
-
-            if (index === 6) {
+            } else if (index === 6) {
                 const badge = document.createElement("span");
                 badge.className = `status ${finding.status.toLowerCase().replace(/\s+/g, "-")}`;
                 badge.textContent = value;
-                cell.textContent = "";
                 cell.appendChild(badge);
+            } else {
+                cell.textContent = value;
             }
 
             row.appendChild(cell);
@@ -121,6 +131,68 @@ function loadVulnerabilityTable() {
     });
 }
 
+// Search and filter functionality
+function filterVulnerabilities() {
+    const searchInput = document.getElementById("vulnerabilitySearch");
+    const severityFilter = document.getElementById("severityFilter");
+    const statusFilter = document.getElementById("statusFilter");
+
+    const searchText = searchInput.value.toLowerCase().trim();
+    const selectedSeverity = severityFilter.value;
+    const selectedStatus = statusFilter.value;
+
+    const filteredFindings = vulnerabilityFindings.filter(finding => {
+
+        const searchableText = [
+            finding.id,
+            finding.name,
+            finding.application,
+            finding.owasp
+        ].join(" ").toLowerCase();
+
+        const matchesSearch = searchableText.includes(searchText);
+
+        const matchesSeverity =
+            !selectedSeverity || finding.severity === selectedSeverity;
+
+        const matchesStatus =
+            !selectedStatus || finding.status === selectedStatus;
+
+        return matchesSearch && matchesSeverity && matchesStatus;
+    });
+
+    loadVulnerabilityTable(filteredFindings);
+}
+
+// Initialize page functionality
 document.addEventListener("DOMContentLoaded", function () {
+
+    const searchInput = document.getElementById("vulnerabilitySearch");
+    const severityFilter = document.getElementById("severityFilter");
+    const statusFilter = document.getElementById("statusFilter");
+    const resetButton = document.getElementById("resetFilters");
+
     loadVulnerabilityTable();
+
+    if (searchInput) {
+        searchInput.addEventListener("input", filterVulnerabilities);
+    }
+
+    if (severityFilter) {
+        severityFilter.addEventListener("change", filterVulnerabilities);
+    }
+
+    if (statusFilter) {
+        statusFilter.addEventListener("change", filterVulnerabilities);
+    }
+
+    if (resetButton) {
+        resetButton.addEventListener("click", function () {
+            searchInput.value = "";
+            severityFilter.value = "";
+            statusFilter.value = "";
+
+            loadVulnerabilityTable();
+        });
+    }
 });
