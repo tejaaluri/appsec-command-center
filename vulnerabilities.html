@@ -1,0 +1,144 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Management | AppSec Center</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<div class="app-container">
+
+    <aside class="sidebar">
+        <div class="brand">
+            <span class="brand-icon">A</span>
+            <span>AppSec Center</span>
+        </div>
+
+        <div class="nav-section">
+            <p class="nav-heading">WORKSPACE</p>
+            <a href="index.html" class="nav-link">Dashboard</a>
+            <a href="vulnerabilities.html" class="nav-link active">Vulnerabilities</a>
+            <a href="#" class="nav-link">Applications</a>
+            <a href="#" class="nav-link">Security Assessments</a>
+            <a href="#" class="nav-link">API Security</a>
+        </div>
+
+        <div class="nav-section">
+            <p class="nav-heading">MANAGEMENT</p>
+            <a href="#" class="nav-link">Remediation</a>
+            <a href="#" class="nav-link">Reports</a>
+            <a href="#" class="nav-link">Settings</a>
+        </div>
+
+        <div class="sidebar-footer">
+            <span>Application Security</span>
+            <small>Vulnerability Management</small>
+        </div>
+    </aside>
+
+    <main class="main-content">
+
+        <header class="topbar">
+            <div>
+                <h1>Vulnerability Management</h1>
+                <p>Review and manage application security findings</p>
+            </div>
+
+            <div class="user-profile">
+                <span class="status-indicator"></span>
+                <span>Security Team</span>
+            </div>
+        </header>
+
+        <section class="dashboard-content">
+
+            <div class="page-heading">
+                <div>
+                    <h2>Security Findings</h2>
+                    <p>Vulnerabilities identified during application security assessments.</p>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+                    <p>Total Vulnerabilities</p>
+                    <h2>8</h2>
+                    <span>Across all applications</span>
+                </div>
+
+                <div class="stat-card critical">
+                    <p>Critical Findings</p>
+                    <h2>2</h2>
+                    <span>Immediate attention required</span>
+                </div>
+
+                <div class="stat-card high">
+                    <p>High Findings</p>
+                    <h2>3</h2>
+                    <span>Priority remediation</span>
+                </div>
+
+                <div class="stat-card resolved">
+                    <p>Fixed Findings</p>
+                    <h2>3</h2>
+                    <span>Remediation completed</span>
+                </div>
+
+            </div>
+
+            <section class="panel">
+
+                <div class="panel-header">
+                    <div>
+                        <h3>Vulnerability Register</h3>
+                        <p>Security assessment findings and risk ratings</p>
+                    </div>
+                </div>
+
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Finding ID</th>
+                                <th>Vulnerability</th>
+                                <th>Application</th>
+                                <th>OWASP Category</th>
+                                <th>CVSS</th>
+                                <th>Severity</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="vulnerabilityTable">
+                            <tr>
+                                <td colspan="7">Loading findings...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </section>
+
+            <section class="panel">
+                <h3>Risk Assessment Notes</h3>
+                <p style="color:#7b8494; margin-top:10px; line-height:1.7;">
+                    Findings are classified based on their security impact,
+                    CVSS scores and potential exposure. Remediation priority
+                    should also consider application criticality and business impact.
+                </p>
+            </section>
+
+        </section>
+
+    </main>
+
+</div>
+
+<script src="assets/js/vulnerabilities.js"></script>
+
+</body>
+</html>
