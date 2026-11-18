@@ -110,6 +110,7 @@
                                 <th>Priority</th>
                                 <th>Status</th>
                                 <th>Target Date</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
 
@@ -127,6 +128,34 @@
 
     </main>
 
+</div>
+
+<!-- Edit Remediation Modal -->
+<div id="remediationModal" class="modal">
+    <div class="modal-content">
+        <button type="button" id="closeRemediationModal" class="modal-close">&times;</button>
+
+        <h2>Edit Remediation</h2>
+
+        <form id="remediationForm">
+            <input type="hidden" id="editFindingId">
+
+            <label for="editOwner">Assigned Owner</label>
+            <input type="text" id="editOwner" required>
+
+            <label for="editStatus">Remediation Status</label>
+            <select id="editStatus">
+                <option value="Open">Open</option>
+                <option value="In Progress">In Progress</option>
+                <option value="Fixed">Fixed</option>
+            </select>
+
+            <label for="editTargetDate">Target Remediation Date</label>
+            <input type="date" id="editTargetDate" required>
+
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>
 </div>
 
 <script src="assets/js/remediation.js"></script>
