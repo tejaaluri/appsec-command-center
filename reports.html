@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Security Reports | AppSec Center</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+        .report-card {
+            background: white;
+            padding: 22px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+        }
+        .report-card h3 { color: #64748b; font-size: 14px; }
+        .report-card strong { display: block; font-size: 30px; margin-top: 12px; }
+        .report-panel {
+            background: white;
+            padding: 25px;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            margin-top: 22px;
+        }
+        .report-panel h2 { margin-bottom: 8px; }
+        .report-panel p { color: #64748b; margin-bottom: 18px; }
+        .report-table { width: 100%; border-collapse: collapse; }
+        .report-table th, .report-table td {
+            padding: 14px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: left;
+        }
+        .report-table th { background: #f1f5f9; }
+        .report-button {
+            padding: 10px 16px;
+            background: #2563eb;
+            color: white;
+            border: 0;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .report-button:hover { background: #1d4ed8; }
+        .report-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+        @media(max-width: 700px) {
+            .report-table { display: block; overflow-x: auto; }
+        }
+    </style>
+</head>
+<body>
+<div class="app-container">
+    <aside class="sidebar">
+        <div class="logo"><h2>AppSec Center</h2></div>
+        <p>WORKSPACE</p>
+        <nav>
+            <a href="index.html">Dashboard</a>
+            <a href="vulnerabilities.html">Vulnerabilities</a>
+            <a href="#">Applications</a>
+            <a href="#">Security Assessments</a>
+            <a href="#">API Security</a>
+        </nav>
+        <p>MANAGEMENT</p>
+        <nav>
+            <a href="remediation.html">Remediation</a>
+            <a href="reports.html" class="active">Reports</a>
+            <a href="#">Settings</a>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <header class="page-header">
+            <div>
+                <h1>Security Reports</h1>
+                <p>Vulnerability trends, risk distribution and remediation performance</p>
+            </div>
+        </header>
+
+        <section class="content-area">
+            <h2>Security Overview</h2>
+            <p>Summary of findings from the current sample assessment dataset.</p>
+
+            <div class="report-grid">
+                <div class="report-card">
+                    <h3>Total Findings</h3>
+                    <strong>8</strong>
+                </div>
+                <div class="report-card">
+                    <h3>Critical Findings</h3>
+                    <strong>2</strong>
+                </div>
+                <div class="report-card">
+                    <h3>High Findings</h3>
+                    <strong>3</strong>
+                </div>
+                <div class="report-card">
+                    <h3>Fixed Findings</h3>
+                    <strong>3</strong>
+                </div>
+            </div>
+
+            <div class="report-panel">
+                <h2>Vulnerability Distribution</h2>
+                <p>Findings grouped by severity.</p>
+                <table class="report-table">
+                    <thead>
+                        <tr><th>Severity</th><th>Findings</th><th>Percentage</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Critical</td><td>2</td><td>25%</td></tr>
+                        <tr><td>High</td><td>3</td><td>37.5%</td></tr>
+                        <tr><td>Medium</td><td>2</td><td>25%</td></tr>
+                        <tr><td>Low</td><td>1</td><td>12.5%</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="report-panel">
+                <h2>Remediation Status</h2>
+                <p>Current progress across the tracked findings.</p>
+                <table class="report-table">
+                    <thead>
+                        <tr><th>Status</th><th>Findings</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Open</td><td>3</td></tr>
+                        <tr><td>In Progress</td><td>2</td></tr>
+                        <tr><td>Fixed</td><td>3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="report-panel">
+                <h2>Export Report</h2>
+                <p>Download a sample security summary in CSV format.</p>
+                <div class="report-actions">
+                    <button class="report-button" onclick="downloadReport()">Download CSV Report</button>
+                    <button class="report-button" onclick="window.print()">Print Report</button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script>
+function downloadReport() {
+    const rows = [
+        ["Metric", "Value"],
+        ["Total Findings", "8"],
+        ["Critical Findings", "2"],
+        ["High Findings", "3"],
+        ["Medium Findings", "2"],
+        ["Low Findings", "1"],
+        ["Open", "3"],
+        ["In Progress", "2"],
+        ["Fixed", "3"]
+    ];
+
+    const csv = rows.map(row => row.join(",")).join("\n");
+    const file = new Blob([csv], { type: "text/csv" });
+    const url = URL.createObjectURL(file);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "appsec-security-report.csv";
+    link.click();
+    URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
