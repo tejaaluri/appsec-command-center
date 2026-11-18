@@ -104,8 +104,8 @@ function loadRemediationTable() {
 
         priorityBadge.className =
             `severity ${record.priority.toLowerCase()}`;
-
         priorityBadge.textContent = record.priority;
+
         priorityCell.appendChild(priorityBadge);
         row.appendChild(priorityCell);
 
@@ -115,13 +115,14 @@ function loadRemediationTable() {
 
         statusBadge.className =
             `status ${record.status.toLowerCase().replace(/\s+/g, "-")}`;
-
         statusBadge.textContent = record.status;
+
         statusCell.appendChild(statusBadge);
         row.appendChild(statusCell);
 
         // Target date
         const dateCell = document.createElement("td");
+
         dateCell.textContent = new Date(
             record.targetDate + "T00:00:00"
         ).toLocaleDateString("en-US", {
@@ -131,13 +132,64 @@ function loadRemediationTable() {
         });
 
         row.appendChild(dateCell);
+
+        // Edit button
+        const actionCell = document.createElement("td");
+        const editButton = document.createElement("button");
+
+        editButton.type = "button";
+        editButton.textContent = "Edit";
+        editButton.className = "edit-button";
+
+        editButton.addEventListener("click", function () {
+            openRemediationModal(record);
+        });
+
+        actionCell.appendChild(editButton);
+        row.appendChild(actionCell);
+
         table.appendChild(row);
     });
 
     updateRemediationSummary();
 }
 
-// Update remediation summary cards
+// Open edit popup with existing record details
+function openRemediationModal(record) {
+    document.getElementById("editFindingId").value = record.id;
+    document.getElementById("editOwner").value = record.owner;
+    document.getElementById("editStatus").value = record.status;
+    document.getElementById("editTargetDate").value = record.targetDate;
+
+    document.getElementById("remediationModal").style.display = "flex";
+}
+
+// Close edit popup
+function closeRemediationModal() {
+    document.getElementById("remediationModal").style.display = "none";
+}
+
+// Save remediation changes
+function saveRemediationChanges(event) {
+    event.preventDefault();
+
+    const findingId = document.getElementById("editFindingId").value;
+
+    const record = remediationRecords.find(
+        item => item.id === findingId
+    );
+
+    if (!record) return;
+
+    record.owner = document.getElementById("editOwner").value.trim();
+    record.status = document.getElementById("editStatus").value;
+    record.targetDate = document.getElementById("editTargetDate").value;
+
+    loadRemediationTable();
+    closeRemediationModal();
+}
+
+// Update summary cards
 function updateRemediationSummary() {
     const total = remediationRecords.length;
 
@@ -162,4 +214,30 @@ function updateRemediationSummary() {
 // Initialize remediation page
 document.addEventListener("DOMContentLoaded", function () {
     loadRemediationTable();
+
+    const form = document.getElementById("remediationForm");
+    const closeButton = document.getElementById("closeRemediationModal");
+    const modal = document.getElementById("remediationModal");
+
+    if (form) {
+        form.addEventListener("submit", saveRemediationChanges);
+    }
+
+    if (closeButton) {
+        closeButton.addEventListener("click", closeRemediationModal);
+    }
+
+    if (modal) {
+        modal.addEventListener("click", function (event) {
+            if (event.target === modal) {
+                closeRemediationModal();
+            }
+        });
+    }
+
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            closeRemediationModal();
+        }
+    });
 });
